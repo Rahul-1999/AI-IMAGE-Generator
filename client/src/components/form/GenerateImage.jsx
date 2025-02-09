@@ -94,7 +94,8 @@ const GenerateImage = ({
       <Top>
         <Title>Generate Image with prompt</Title>
         <Desc>
-          Write your prompt according to the image you want to generate!
+          Write your prompt according to the image you want to generate! and do
+          it hurry.
         </Desc>
       </Top>
       <Body>
