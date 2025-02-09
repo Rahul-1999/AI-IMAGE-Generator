@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         NODE_VERSION = '22.x' // Change as needed
-        MONGO_URI = credentials('mongodb+srv://rhrahul9480:02Dm14q8mRPSYckA@cluster0.yiz8b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0') // Store MongoDB URI in Jenkins credentials
     }
 
     stages {
