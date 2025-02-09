@@ -1,4 +1,6 @@
 pipeline {
+    agent any // Or specify a specific agent/node
+
     stages {
         stage('Checkout') {
             steps {
@@ -19,6 +21,17 @@ pipeline {
             steps {
                 dir('server') { // Change to your backend directory
                     sh 'npm install' // Or yarn install
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                dir('client') {
+                    sh 'npm test' // Or yarn test
+                }
+                dir('server') {
+                    sh 'npm test' // Or yarn test
                 }
             }
         }
