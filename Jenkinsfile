@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo/mern-app.git'
+                git branch: 'main', url: 'https://github.com/Rahul-1999/AI-IMAGE-Generator'
             }
         }
 
