@@ -1,44 +1,51 @@
 pipeline {
-    agent any // Or specify a specific agent/node
+    agent any
 
-    tools {
-        // Install Node.js tool with a specific version
-        nodejs 'node:latest'
+    environment {
+        NODE_VERSION = '22.x' // Change as needed
+        MONGO_URI = credentials('mongodb+srv://rhrahul9480:02Dm14q8mRPSYckA@cluster0.yiz8b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0') // Store MongoDB URI in Jenkins credentials
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Rahul-1999/AI-IMAGE-Generator' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/your-repo/mern-app.git'
+            }
+        }
+
+        stage('Setup Node.js') {
+            steps {
+                script {
+                    def nodeInstalled = sh(script: 'node -v', returnStatus: true) == 0
+                    if (!nodeInstalled) {
+                        sh 'curl -fsSL https://deb.nodesource.com/setup_$NODE_VERSION | bash -'
+                        sh 'apt-get install -y nodejs'
+                    }
+                }
             }
         }
 
         stage('Build Frontend') {
             steps {
-                dir('client') { // Change to your frontend directory
-                    sh 'npm install' // Or yarn install
-                    sh 'npm run build' // Or yarn build
-                }
+                sh 'cd client && npm install && npm run build'
             }
         }
 
-        stage('Build Backend') {
+        stage('Deploy') {
             steps {
-                dir('server') { // Change to your backend directory
-                    sh 'npm install' // Or yarn install
+                script {
+                    sh 'pm2 restart server.js || pm2 start server.js --name mern-app'
                 }
             }
         }
+    }
 
-        stage('Test') {
-            steps {
-                dir('client') {
-                    sh 'npm test' // Or yarn test
-                }
-                dir('server') {
-                    sh 'npm test' // Or yarn test
-                }
-            }
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed! Check logs for details.'
         }
     }
 }
