@@ -1,6 +1,11 @@
 pipeline {
     agent any // Or specify a specific agent/node
 
+    tools {
+        // Install Node.js tool with a specific version
+        nodejs 'node:latest'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -8,14 +13,11 @@ pipeline {
             }
         }
 
-       stage('Build Frontend') {
-            agent any // or specify a label if needed
+        stage('Build Frontend') {
             steps {
-                nodejs(configId: 'NodeJS-22') { // Use the name you configured
-                    dir('client') {
-                        sh 'npm install'
-                        sh 'npm run build'
-                    }
+                dir('client') { // Change to your frontend directory
+                    sh 'npm install' // Or yarn install
+                    sh 'npm run build' // Or yarn build
                 }
             }
         }
