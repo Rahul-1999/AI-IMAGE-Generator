@@ -8,11 +8,14 @@ pipeline {
             }
         }
 
-        stage('Build Frontend') {
+       stage('Build Frontend') {
+            agent any // or specify a label if needed
             steps {
-                dir('client') { // Change to your frontend directory
-                    sh 'npm install' // Or yarn install
-                    sh 'npm run build' // Or yarn build
+                nodejs(configId: 'NodeJS-22') { // Use the name you configured
+                    dir('client') {
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
                 }
             }
         }
