@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: '' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/Rahul-1999/AI-IMAGE-Generator' // Replace with your repo URL
             }
         }
 
