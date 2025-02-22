@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/Rahul-1999/AI-IMAGE-Generator'
+                git 'https://github.com/Rahul-1999/AI-IMAGE-Generator.git'
             }
         }
     }
