@@ -21,7 +21,7 @@ pipeline {
             steps {
                 // Change to the client directory and install dependencies
                 dir('client') {
-                    bat 'npm install'
+                    sh 'npm install'
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 // Change to the client directory and run the build command
                 dir('client') {
-                    bat 'npm run build'
+                    sh 'npm run build'
                 }
             }
         }
