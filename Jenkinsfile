@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Install Node.js tool with a specific version
-        nodejs 'NodeJS'
+        nodejs 'NodeJS_Latest'
     }
     // environment {
     //     GIT_REPO = 'https://github.com/MayankSaxena23/AI-Image-Generator.git'
@@ -11,6 +11,12 @@ pipeline {
     // }
 
     stages {
+        stage('Setup') {
+            steps {
+                sh 'node -v' // Verify Node.js installation
+                sh 'npm install' // Install dependencies
+            }
+        }
         stage('Checkout Code') {
             steps {
                 git branch: "${BRANCH}", url: "${GIT_REPO}"
