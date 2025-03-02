@@ -11,12 +11,6 @@ pipeline {
     // }
 
     stages {
-        stage('Setup') {
-            steps {
-                sh 'node -v' // Verify Node.js installation
-                sh 'npm install' // Install dependencies
-            }
-        }
         stage('Checkout Code') {
             steps {
                 git branch: "${BRANCH}", url: "${GIT_REPO}"
