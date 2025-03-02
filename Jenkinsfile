@@ -34,6 +34,19 @@ pipeline {
                 }
             }
         }
+        stage('Install Backend Dependencies') {
+            steps {
+                // Change to the backend directory and install dependencies
+                dir('server') {
+                    sh 'npm install'
+                    sh 'export MONGODB_URI=$MONGODB_URI'
+                    sh 'export CLOUDINARY_CLOUD_NAME=$CLOUDINARY_CLOUD_NAME'
+                    sh 'export CLOUDINARY_API_KEY=$CLOUDINARY_API_KEY'
+                    sh 'export CLOUDINARY_API_SECRET=$CLOUDINARY_API_SECRET'
+                    sh 'export OPENAI_API_KEY=$OPENAI_API_KEY'
+                }
+            }
+        }
 
         // stage('Show Git Changes') {
         //     steps {
