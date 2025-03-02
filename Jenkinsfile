@@ -43,7 +43,7 @@ pipeline {
                     sh 'export CLOUDINARY_CLOUD_NAME=$CLOUDINARY_CLOUD_NAME'
                     sh 'export CLOUDINARY_API_KEY=$CLOUDINARY_API_KEY'
                     sh 'export CLOUDINARY_API_SECRET=$CLOUDINARY_API_SECRET'
-                    sh 'export OPENAI_API_KEY=$OPENAI_API_KEY'
+                    // sh 'export OPENAI_API_KEY=$OPENAI_API_KEY'
                 }
             }
         }
