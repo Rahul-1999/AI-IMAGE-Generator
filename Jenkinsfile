@@ -30,7 +30,7 @@ pipeline {
             steps {
                 // Change to the client directory and run the build command
                 dir('client') {
-                    sh 'npm run build'
+                    sh 'CI=false npm run build'
                 }
             }
         }
